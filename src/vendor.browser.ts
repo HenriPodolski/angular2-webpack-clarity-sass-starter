@@ -21,11 +21,6 @@ import '@angularclass/hmr';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
-// Custom elements polyfill
-import '@webcomponents/custom-elements/custom-elements.min';
-// Clarity
-import 'clarity-icons/src/define-clarity-icons';
-
 
 if ('production' === ENV) {
   // Production
