@@ -13,6 +13,7 @@ import { AppState } from './app.service';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
+    '../../node_modules/clarity-icons/clarity-icons.min.css',
     '../../node_modules/clarity-ui/src/main.scss',
     './app.component.css'
   ],

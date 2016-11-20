@@ -280,8 +280,7 @@ module.exports = function (options) {
           sassLoader: {
             includePaths: [
               './src',
-              './node_modules/clarity-icons/src',
-              './node_modules/clarity-ui/src'
+              'node_modules/clarity-ui/src'
             ]
           },
         }

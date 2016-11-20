@@ -22,9 +22,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 // Custom elements polyfill
-import '../node_modules/@webcomponents/custom-elements/custom-elements.min';
+import '@webcomponents/custom-elements/custom-elements.min';
 // Clarity
-import '../node_modules/clarity-icons/clarity-icons.min';
+import 'clarity-icons/src/define-clarity-icons';
 
 
 if ('production' === ENV) {
