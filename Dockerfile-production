@@ -1,20 +1,17 @@
 # Build:
-# docker build -t ewacsjs/ewacs .
+# docker build -t ewacsjs/ewacs -f Dockerfile-production .
 #
 # Run:
 # docker run -it ewacsjs/ewacs
 #
 # Compose:
-# docker-compose up -d
+# docker-compose -f docker-compose-production.yml up -d
 
 FROM ubuntu:latest
 MAINTAINER HENRIPODOLSKI
 
-# 80 = HTTP, 443 = HTTPS, 3000 = ewacs.js server, 35729 = livereload, 8080 = node-inspector
-EXPOSE 80 443 3000 35729 8080
-
-# Set development environment as default
-ENV NODE_ENV development
+# 80 = HTTP, 443 = HTTPS, 3000 = ewacs.js server, 35729 = livereload
+EXPOSE 80 443 3000 35729
 
 # Install Utilities
 RUN apt-get update -q  \
@@ -39,7 +36,6 @@ RUN sudo apt-get install -yq nodejs \
 
 # Install ewacs.js Prerequisites
 RUN npm install --quiet -g mocha karma-cli pm2 && npm cache clean
-
 WORKDIR /opt/ewacs.js
 
 # Copies the local package.json file to the container
@@ -48,9 +44,13 @@ WORKDIR /opt/ewacs.js
 # when the local package.json file changes.
 # Install npm packages
 COPY package.json /opt/ewacs.js/package.json
-RUN npm install --quiet && npm cache clean
+RUN NODE_ENV=development npm install --quiet && npm cache clean
+
+
+# Set development environment as default
+ENV NODE_ENV production
 
 COPY . /opt/ewacs.js
 
 # Run ewacs.js server
-CMD npm install && npm start:hmr
+CMD ["npm","run-script","start:prod"]
