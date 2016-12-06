@@ -1,12 +1,10 @@
-var express = require('express');
-var path = require('path');
-var morgan = require('morgan'); // logger
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan'); // logger
+const bodyParser = require('body-parser');
+const app = express();
 
-var app = express();
-app.set('port', (process.env.PORT || 3000));
-
-app.use('/', express.static(__dirname + '/../../dist'));
+app.set('port', (process.env.PORT || 3001));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -15,13 +13,22 @@ app.use(bodyParser.urlencoded({
 
 app.use(morgan('dev'));
 
-var mongoose = require('mongoose');
+app.get('*', function response(req, res) {
+    let docs = { message: 'It works!' };
+    res.json(docs);
+});
+
+app.listen(app.get('port'), function() {
+    console.log('EWACS Full Stack listening on port ' + app.get('port'));
+});
+
+/*const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/test');
-var db = mongoose.connection;
+const db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 // Models
-var Cat = require('./cat.model.js');
+const Cat = require('./cat.model.js');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -46,7 +53,7 @@ db.once('open', function() {
 
     // create
     app.post('/cat', function(req, res) {
-        var obj = new Cat(req.body);
+        let obj = new Cat(req.body);
         obj.save(function(err, obj) {
             if (err) return console.error(err);
             res.status(200).json(obj);
@@ -84,14 +91,7 @@ db.once('open', function() {
     });
 
 
-    // all other routes are handled by Angular
-    app.get('/*', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../../dist/index.html'));
-    });
 
-    app.listen(app.get('port'), function() {
-        console.log('Angular 2 Full Stack listening on port ' + app.get('port'));
-    });
-});
+});*/
 
 module.exports = app;

@@ -9,7 +9,10 @@ Using the following addons/changes:
 * Clarity: https://vmware.github.io/clarity
 
 ### Documentation
+#### Generate
+Using `npm run docs` and with guide located here:
 http://typedoc.org/guides/doccomments/
+code could be documented.
 
 ### Troubleshooting
 #### Docker
