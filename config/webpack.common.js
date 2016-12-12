@@ -25,7 +25,7 @@ const autoprefixer = require('autoprefixer');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-    title: 'BASF Construction Chemicals',
+    title: 'EWACS Starter',
     baseUrl: '/',
     isDevServer: helpers.isWebpackDevServer()
 };
@@ -219,9 +219,6 @@ module.exports = function(options) {
             }, {
                 from: 'node_modules/clarity-ui',
                 to: 'node_modules/clarity-ui',
-            }, {
-                from: 'node_modules/dragula',
-                to: 'node_modules/dragula',
             }]),
 
 

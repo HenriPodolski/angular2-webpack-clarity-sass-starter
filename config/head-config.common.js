@@ -40,7 +40,6 @@ module.exports = {
         /** <link> tags for styles **/
         { rel: 'stylesheet', href: '/node_modules/clarity-icons/clarity-icons.min.css' },
         { rel: 'stylesheet', href: '/node_modules/clarity-ui/clarity-ui.min.css' },
-        { rel: 'stylesheet', href: '/node_modules/dragula/dist/dragula.min.css' },
         { rel: 'stylesheet', href: '/assets/css/webfonts.css' }
     ],
     meta: [
