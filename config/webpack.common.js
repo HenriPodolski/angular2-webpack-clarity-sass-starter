@@ -25,7 +25,7 @@ const autoprefixer = require('autoprefixer');
  */
 const HMR = helpers.hasProcessFlag('hot');
 const METADATA = {
-    title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+    title: 'BASF Construction Chemicals',
     baseUrl: '/',
     isDevServer: helpers.isWebpackDevServer()
 };
@@ -55,7 +55,6 @@ module.exports = function(options) {
          * See: http://webpack.github.io/docs/configuration.html#entry
          */
         entry: {
-            'clarityIcons': './node_modules/clarity-icons/clarity-icons.min.js',
             'polyfills': './src/polyfills.browser.ts',
             'vendor': './src/vendor.browser.ts',
             'main': './src/main.browser.ts'
@@ -133,17 +132,7 @@ module.exports = function(options) {
                  */
                 {
                     test: /\.scss$/,
-                    loaders: ['to-string-loader', 'raw-loader', 'postcss', 'sass-loader']
-                },
-
-                /*
-                 * support for *.js files
-                 * Returns file content as string
-                 *
-                 */
-                {
-                    test: /clarity-icons\.min\.js$/,
-                    loaders: ['script-loader']
+                    loaders: ['raw-loader', 'postcss', 'sass-loader']
                 },
 
                 /* Raw loader support for *.html
@@ -160,7 +149,7 @@ module.exports = function(options) {
                 /* File loader for supporting images, for example, in CSS files.
                  */
                 {
-                    test: /\.(jpg|png|gif)$/,
+                    test: /\.(jpg|png|gif|svg)$/,
                     loader: 'file'
                 },
 
@@ -180,13 +169,6 @@ module.exports = function(options) {
                 prettyPrint: true
             }),
 
-            /*
-             * Plugin: ForkCheckerPlugin
-             * Description: Do type checking in a separate process, so webpack don't need to wait.
-             *
-             * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
-             */
-            new ForkCheckerPlugin(),
             /*
              * Plugin: CommonsChunkPlugin
              * Description: Shares common code between the pages.
@@ -225,7 +207,22 @@ module.exports = function(options) {
                 to: 'assets',
             }, {
                 from: 'src/meta',
-            }, ]),
+            }, {
+                from: 'node_modules/clarity-icons',
+                to: 'node_modules/clarity-icons',
+            }, {
+                from: 'node_modules/mutationobserver-shim',
+                to: 'node_modules/mutationobserver-shim',
+            }, {
+                from: 'node_modules/@webcomponents',
+                to: 'node_modules/@webcomponents',
+            }, {
+                from: 'node_modules/clarity-ui',
+                to: 'node_modules/clarity-ui',
+            }, {
+                from: 'node_modules/dragula',
+                to: 'node_modules/dragula',
+            }]),
 
 
             /*

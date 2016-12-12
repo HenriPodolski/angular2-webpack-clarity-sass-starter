@@ -1,8 +1,36 @@
-html, body{
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif
+html,
+body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+ ::before,
+ ::after {
+    box-sizing: inherit;
 }
 
 span.active {
-  background-color: gray;
+    background-color: gray;
+}
+
+.main-header-row {
+    width: 100%;
+    margin: 0;
+}
+
+.brand-headline {
+    font-family: BitterItalic;
+    text-transform: lowercase;
+    color: white;
+    margin: 0;
+}
+
+.main-menu-container {
+    display: flex;
+    justify-content: flex-end;
 }

@@ -1,4 +1,4 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ClarityModule } from 'clarity-angular';
 import { FormsModule } from '@angular/forms';
@@ -15,11 +15,10 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
-import { CoursesComponent } from './courses.component';
-import { AboutComponent } from './about';
+import { HeaderComponent } from './header';
+import { OverviewComponent } from './overview';
+import { DetailComponent } from './detail';
 import { NoContentComponent } from './no-content';
-import { XLarge } from './home/x-large';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -40,11 +39,10 @@ type StoreType = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    AboutComponent,
-    HomeComponent,
-    CoursesComponent,
-    NoContentComponent,
-    XLarge
+    HeaderComponent,
+    OverviewComponent,
+    DetailComponent,
+    NoContentComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -56,6 +54,9 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class AppModule {

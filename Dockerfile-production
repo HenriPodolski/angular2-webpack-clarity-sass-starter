@@ -1,8 +1,8 @@
 # Build:
-# docker build -t ewacsjs/ewacs -f Dockerfile-production .
+# docker build -t basf/construction-chemicals -f Dockerfile-production .
 #
 # Run:
-# docker run -it ewacsjs/ewacs
+# docker run -it basf/construction-chemicals
 #
 # Compose:
 # docker-compose -f docker-compose-production.yml up -d
@@ -10,7 +10,7 @@
 FROM ubuntu:latest
 MAINTAINER HENRIPODOLSKI
 
-# 80 = HTTP, 443 = HTTPS, 3000 = ewacs.js server, 35729 = livereload
+# 80 = HTTP, 443 = HTTPS, 3000 = construction-chemicals-web server, 35729 = livereload
 EXPOSE 80 443 3000 35729
 
 # Install Utilities
@@ -34,23 +34,23 @@ RUN sudo apt-get install -yq nodejs \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install ewacs.js Prerequisites
+# Install construction-chemicals-web Prerequisites
 RUN npm install --quiet -g mocha karma-cli pm2 && npm cache clean
-WORKDIR /opt/ewacs.js
+WORKDIR /opt/construction-chemicals-web
 
 # Copies the local package.json file to the container
 # and utilities docker container cache to not needing to rebuild
 # and install node_modules/ everytime we build the docker, but only
 # when the local package.json file changes.
 # Install npm packages
-COPY package.json /opt/ewacs.js/package.json
+COPY package.json /opt/construction-chemicals-web/package.json
 RUN NODE_ENV=development npm install --quiet && npm cache clean
 
 
 # Set development environment as default
 ENV NODE_ENV production
 
-COPY . /opt/ewacs.js
+COPY . /opt/construction-chemicals-web
 
-# Run ewacs.js server
+# Run construction-chemicals-web server
 CMD ["npm","run-script","start:prod"]

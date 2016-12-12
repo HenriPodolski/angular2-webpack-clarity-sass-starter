@@ -4,7 +4,7 @@ const morgan = require('morgan'); // logger
 const bodyParser = require('body-parser');
 const app = express();
 
-app.set('port', (process.env.PORT || 3001));
+app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -13,13 +13,15 @@ app.use(bodyParser.urlencoded({
 
 app.use(morgan('dev'));
 
+app.use(express.static(path.join(__dirname, '/../dist')));
+
 app.get('*', function response(req, res) {
     let docs = { message: 'It works!' };
     res.json(docs);
 });
 
 app.listen(app.get('port'), function() {
-    console.log('EWACS Full Stack listening on port ' + app.get('port'));
+    console.log('BASF Construction Chemicals Full Stack Server listening on port ' + app.get('port'));
 });
 
 /*const mongoose = require('mongoose');
